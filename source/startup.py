@@ -7,7 +7,7 @@ from source import booleans
 #from colorama import Fore, Back, Style
 
 def _startup():
-    ctypes.windll.kernel32.SetConsoleTitleA("WoTB mod installer (startup)")
+    ctypes.windll.kernel32.SetConsoleTitleA('WoTB mod installer (startup)')
     print(" WoTB mod installer by BaseDEV_Official.")
     print(" A system to easily install WoTB mods to the steam folder.")
     print("\n My Social Media;")
