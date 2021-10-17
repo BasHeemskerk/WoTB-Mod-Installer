@@ -4,7 +4,12 @@ import os
 from source import booleans
 from source import fileCopy
 from source import clearScreen
+
 wotbDir = "C:/Program Files (x86)/Steam/steamapps/common/World of Tanks Blitz/"
+cDir = "C:/"
+folderSize = 0
+maxSize = 0
+byteType = ["PiB", "TiB", "GiB", "MiB", "KiB", "B"]
 
 #check mod directory
 def parseDir(dir):
@@ -21,9 +26,43 @@ def parseDir(dir):
     time.sleep(3)
 
     if (booleans.folderExists):
-        folderExists(_modPathDir)
+        confirmDataSize(_modPathDir)
     elif (booleans.folderExists == False):
         folderDoesNotExist(_modPathDir)
+
+def confirmDataSize(dir):
+    clearScreen.clearScr()
+
+    print("Location exists!")
+    print("Checking folder size...")
+    _modPathDir = dir
+    print(" -> " + _modPathDir)
+
+    maxSize += os.path.getsize(cDir)
+    folderSize += os.path.getsize(_modPathDir)
+
+    time.sleep(3)
+
+    if (folderSize < maxSize):
+        finalize(_modPathDir)
+    else:
+        folderSize = 0
+        maxSize = 0
+        notEnoughSpace(_modPathDir)
+
+
+def notEnoughSpace(dir):
+    clearScreen.clearScr()
+
+    print("ERROR\n")
+    print("There is not enough space in the '" + cDir + "' drive!")
+
+    _addDir()
+
+
+def finalize(dir):
+    _modPathDir = dir
+    folderExists(_modPathDir)
 
 #add mod directory
 def _addDir():
